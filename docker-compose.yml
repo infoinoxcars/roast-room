@@ -1,0 +1,19 @@
+services:
+  roast-room:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: roast_room
+    restart: unless-stopped
+    ports:
+      - "4730:4730"
+    env_file:
+      - .env
+    environment:
+      - HOST=0.0.0.0
+      - PORT=4730
+    volumes:
+      - ./sessions:/app/sessions
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 512M

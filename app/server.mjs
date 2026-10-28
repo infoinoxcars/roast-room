@@ -8,6 +8,7 @@ import { usage } from "./lib/anthropic.mjs";
 import * as watch from "./lib/watch.mjs";
 
 const PORT = Number(process.env.PORT) || 4730;
+const HOST = process.env.HOST || "0.0.0.0";
 const PUBLIC = path.join(APP_ROOT, "public");
 const TYPES = { ".html": "text/html; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".css": "text/css; charset=utf-8", ".svg": "image/svg+xml", ".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg", ".ico": "image/x-icon", ".json": "application/json", ".ttf": "font/ttf", ".txt": "text/plain; charset=utf-8" };
 
@@ -80,4 +81,4 @@ const server = http.createServer(async (req, res) => {
   }
 });
 
-server.listen(PORT, "127.0.0.1", () => console.log(`Roast Room on http://localhost:${PORT} (${RUNNER === "api" ? "viewer + API runner" : "viewer: run /roast-room in Claude Code"})`));
+server.listen(PORT, HOST, () => console.log(`Roast Room on http://localhost:${PORT} (${RUNNER === "api" ? "viewer + API runner" : "viewer: run /roast-room in Claude Code"})`));
